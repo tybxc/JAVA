@@ -1,0 +1,3 @@
+Another file for demonstration.
+It also contains the word example.
+This is a simple example.
