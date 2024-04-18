@@ -5,8 +5,8 @@
 import java.sql.*;
 
 public class ProductManagement {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/mydatabase"; // Change 'mydatabase' to your database name
+    static final String JDBC_DRIVER = "org.postgresql.Driver";
+    static final String DB_URL = "jdbc:postgresql://localhost:5432/mydatabase"; // Change 'mydatabase' to your database name
 
     static final String USER = "username"; // Change 'username' to your database username
     static final String PASS = "password"; // Change 'password' to your database password
@@ -26,10 +26,9 @@ public class ProductManagement {
             System.out.println("Creating table...");
             stmt = conn.createStatement();
             String sql = "CREATE TABLE Product " +
-                         "(Pid INT NOT NULL AUTO_INCREMENT, " +
+                         "(Pid SERIAL PRIMARY KEY, " + // Using SERIAL for auto-increment in PostgreSQL
                          " Pname VARCHAR(255), " +
-                         " Price DECIMAL(10,2), " +
-                         " PRIMARY KEY ( Pid ))";
+                         " Price DECIMAL(10,2))";
             stmt.executeUpdate(sql);
             System.out.println("Table created successfully");
 
