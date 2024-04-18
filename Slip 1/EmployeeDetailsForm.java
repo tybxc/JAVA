@@ -1,4 +1,3 @@
-// Write a Java program to accept the details of Employee (Eno, EName, Designation, Salary) from a user and store it into the database. (Use Swing)
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -50,7 +49,7 @@ public class EmployeeDetailsForm extends JFrame implements ActionListener {
             String salary = salaryField.getText();
 
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_database_name", "username", "password");
+                Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/your_database_name", "username", "password");
 
                 String query = "INSERT INTO employees (eno, ename, designation, salary) VALUES (?, ?, ?, ?)";
                 PreparedStatement pstmt = conn.prepareStatement(query);
