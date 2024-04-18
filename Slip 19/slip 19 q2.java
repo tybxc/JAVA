@@ -15,17 +15,17 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        // Database connection parameters
-        String url = "jdbc:mysql://localhost:3306/mydatabase";
-        String dbUsername = "your_username";
-        String dbPassword = "your_password";
+        // Database connection parameters for PostgreSQL
+        String url = "jdbc:postgresql://localhost:5432/mydatabase"; // Adjust URL accordingly
+        String dbUsername = "your_username"; // Provide your PostgreSQL username
+        String dbPassword = "your_password"; // Provide your PostgreSQL password
 
         // Database query to check if username and password exist
         String query = "SELECT * FROM users WHERE username=? AND password=?";
         
         try {
-            // Load MySQL JDBC Driver
-            Class.forName("com.mysql.jdbc.Driver");
+            // Load PostgreSQL JDBC Driver
+            Class.forName("org.postgresql.Driver");
 
             // Establish database connection
             Connection con = DriverManager.getConnection(url, dbUsername, dbPassword);
