@@ -5,26 +5,28 @@
 
 import java.util.LinkedList;
 
-public class Q111IntegerLinkedList {
+public class LinkedListOperations {
     public static void main(String[] args) {
-        // Create a LinkedList of Integer objects
-        LinkedList<Integer> integerList = new LinkedList<>();
+        // Create a LinkedList of integer objects
+        LinkedList<Integer> linkedList = new LinkedList<>();
 
-        // Add elements at the first position
-        integerList.addFirst(5);
-        integerList.addFirst(10);
-        integerList.addFirst(15);
+        // i. Add element at first position
+        linkedList.addFirst(10);
+        linkedList.addFirst(20);
+        linkedList.addFirst(30);
 
-        // Delete the last element
-        if (!integerList.isEmpty()) {
-            integerList.removeLast();
+        // Display the elements of the linked list
+        System.out.println("Linked List after adding elements at first position: " + linkedList);
+
+        // ii. Delete last element
+        if (!linkedList.isEmpty()) {
+            linkedList.removeLast();
+            System.out.println("Linked List after deleting last element: " + linkedList);
+        } else {
+            System.out.println("Linked List is empty. No element to delete.");
         }
 
-        // Display the size of the linked list
-        int size = integerList.size();
-        System.out.println("Size of the linked list: " + size);
+        // iii. Display the size of the linked list
+        System.out.println("Size of the Linked List: " + linkedList.size());
     }
 }
-
-
-// Size of the linked list: 2
