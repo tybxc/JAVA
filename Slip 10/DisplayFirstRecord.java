@@ -1,5 +1,3 @@
-//Write a Java program to display first record from student table (RNo, SName, Per) onto the TextFields by clicking on button. (Assume Student table is already created).
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -43,7 +41,7 @@ public class DisplayFirstRecord extends JFrame {
     }
 
     private void displayFirstRecord() {
-        String url = "jdbc:mysql://localhost:3306/mydatabase"; // Change to your database URL
+        String url = "jdbc:postgresql://localhost:5432/mydatabase"; // Change to your PostgreSQL database URL
         String username = "yourusername"; // Change to your database username
         String password = "yourpassword"; // Change to your database password
 
