@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class EmployeeManagementSystem {
-    static final String URL = "jdbc:mysql://localhost:3306/mydatabase";
+    static final String URL = "jdbc:postgresql://localhost:5432/mydatabase";
     static final String USERNAME = "your_username";
     static final String PASSWORD = "your_password";
-    
+
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
@@ -20,7 +20,7 @@ public class EmployeeManagementSystem {
                 System.out.println("4. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
-                
+
                 switch (choice) {
                     case 1:
                         insertEmployee();
@@ -42,11 +42,11 @@ public class EmployeeManagementSystem {
             e.printStackTrace();
         }
     }
-    
+
     static void insertEmployee() throws SQLException {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("INSERT INTO Employee (ENo, EName, Salary) VALUES (?, ?, ?)")) {
-            
+
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter Employee Number: ");
             int eno = scanner.nextInt();
@@ -54,11 +54,11 @@ public class EmployeeManagementSystem {
             String ename = scanner.next();
             System.out.print("Enter Salary: ");
             double salary = scanner.nextDouble();
-            
+
             statement.setInt(1, eno);
             statement.setString(2, ename);
             statement.setDouble(3, salary);
-            
+
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Employee inserted successfully.");
@@ -67,11 +67,11 @@ public class EmployeeManagementSystem {
             }
         }
     }
-    
+
     static void updateEmployee() throws SQLException {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("UPDATE Employee SET EName = ?, Salary = ? WHERE ENo = ?")) {
-            
+
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter Employee Number: ");
             int eno = scanner.nextInt();
@@ -79,11 +79,11 @@ public class EmployeeManagementSystem {
             String ename = scanner.next();
             System.out.print("Enter new Salary: ");
             double salary = scanner.nextDouble();
-            
+
             statement.setString(1, ename);
             statement.setDouble(2, salary);
             statement.setInt(3, eno);
-            
+
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Employee updated successfully.");
@@ -92,19 +92,19 @@ public class EmployeeManagementSystem {
             }
         }
     }
-    
+
     static void displayEmployees() throws SQLException {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM Employee");
              ResultSet resultSet = statement.executeQuery()) {
-            
+
             System.out.println("\nEmployee Details:");
             System.out.println("ENo\tEName\tSalary");
             while (resultSet.next()) {
                 int eno = resultSet.getInt("ENo");
                 String ename = resultSet.getString("EName");
                 double salary = resultSet.getDouble("Salary");
-                
+
                 System.out.println(eno + "\t" + ename + "\t" + salary);
             }
         }
