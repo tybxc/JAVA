@@ -1,11 +1,32 @@
-// Write a java program to display name and priority of a Thread.
-public class ThreadInfo {
-    public static void main(String[] args) {
-        // Create a thread object
-        Thread thread = Thread.currentThread();
+public class VowelDisplay extends Thread {
+    private String text;
 
-        // Display the name and priority of the thread
-        System.out.println("Thread Name: " + thread.getName());
-        System.out.println("Thread Priority: " + thread.getPriority());
+    public VowelDisplay(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            if (isVowel(ch)) {
+                System.out.println(ch);
+                try {
+                    Thread.sleep(3000); // Sleep for 3 seconds
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private boolean isVowel(char ch) {
+        return "aeiouAEIOU".indexOf(ch) != -1;
+    }
+
+    public static void main(String[] args) {
+        String input = "This is a sample string with vowels.";
+        VowelDisplay vowelDisplay = new VowelDisplay(input);
+        vowelDisplay.start();
     }
 }
