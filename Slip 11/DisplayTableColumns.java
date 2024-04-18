@@ -1,9 +1,8 @@
-// Write a Java program to display information about all columns in the DONAR table using ResultSetMetaData.
 import java.sql.*;
 
 public class DisplayTableColumns {
     // JDBC URL, username, and password
-    static final String JDBC_URL = "jdbc:mysql://localhost:3306/mydatabase"; // Change to your database URL
+    static final String JDBC_URL = "jdbc:postgresql://localhost:5432/mydatabase"; // Change to your PostgreSQL database URL
     static final String USERNAME = "yourusername"; // Change to your database username
     static final String PASSWORD = "yourpassword"; // Change to your database password
 
