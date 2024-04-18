@@ -1,10 +1,8 @@
-// Write a Java program to display information about the database and list all the tables in the database. (Use DatabaseMetaData).
-
 import java.sql.*;
 
 public class DatabaseInfo {
     public static void main(String[] args) {
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "yourusername", "yourpassword")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/mydatabase", "yourusername", "yourpassword")) {
             DatabaseMetaData metaData = conn.getMetaData();
 
             // Display database information
